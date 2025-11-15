@@ -1,0 +1,91 @@
+
+use mani ;
+
+create table emp4( id int primary key  auto_increment, ename varchar(30) NOT null ,    -- you must enter the ename
+job_desc varchar(20)  default "unassigned" ,
+salary int check (salary>10000) , pan varchar(10) unique  ) ;  
+
+
+select*from emp4 ;  
+
+insert into emp4(ename,pan,salary) values ("naveen", "rrff" , 1200000 ) ;
+insert into emp4(ename,pan,salary) values ("naveen", "r66f" , 12000 ) ;
+
+
+
+
+show databases;
+
+create database logic;
+use logic;
+
+create table student(  
+   id INT PRIMARY KEY,
+   Name VARCHAR(30),
+   gpa DECIMAL(3,2)
+   );
+   
+create table vrmall3(id int ,name varchar(100) , role varchar(100),salary int) ;
+
+select * from vrmall3 ;
+insert into vrmall3  values(1,"mani","admin",100000),(2,"mani","admin",100000),(3,"mani","admin",100000),(4,"mani","admin",100000),(5,"ram","manager",10000),
+(6,"harini","sales",100000),(7,"pooja","sales",100000),(8,"ramya","hr",3000000),
+(9,"mani","admin",100000),(10,"ragu","ceo",8000000),(11,"ashok","hr",2200000);
+   
+delete from vrmall3 where role="admin" ;
+delete from vrmall3 where role="ceo" ;
+
+select * from vrmall3 ;
+
+
+
+show databases;
+
+create database logic;
+use logic;
+
+create table student(  
+   id INT PRIMARY KEY,
+   Name VARCHAR(30),
+   gpa DECIMAL(3,2)
+   );
+   
+create table vrmall3(id int ,name varchar(100) , role varchar(100),salary int) ;
+
+select * from vrmall3 ;
+insert into vrmall3  values(1,"mani","admin",100000),(2,"mani","admin",100000),(3,"mani","admin",100000),(4,"mani","admin",100000),(5,"ram","manager",10000),
+(6,"harini","sales",100000),(7,"pooja","sales",100000),(8,"ramya","hr",3000000),
+(9,"mani","admin",100000),(10,"ragu","ceo",8000000),(11,"ashok","hr",2200000);
+   
+delete from vrmall3 where role="admin" ;
+delete from vrmall3 where role="ceo" ;
+
+select * from vrmall3 ;
+
+
+
+show databases;
+
+create database logic;
+use logic;
+
+create table student(  
+   id INT PRIMARY KEY,
+   Name VARCHAR(30),
+   gpa DECIMAL(3,2)
+   );
+   
+create table vrmall3(id int ,name varchar(100) , role varchar(100),salary int) ;
+
+select * from vrmall3 ;
+insert into vrmall3  values(1,"mani","admin",100000),(2,"mani","admin",100000),(3,"mani","admin",100000),(4,"mani","admin",100000),(5,"ram","manager",10000),
+(6,"harini","sales",100000),(7,"pooja","sales",100000),(8,"ramya","hr",3000000),
+(9,"mani","admin",100000),(10,"ragu","ceo",8000000),(11,"ashok","hr",2200000);
+   
+delete from vrmall3 where role="admin" ;
+delete from vrmall3 where role="ceo" ;
+
+select * from vrmall3 ;
+
+
+

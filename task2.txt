@@ -1,0 +1,98 @@
+create database uniq1;
+use uniq1;
+
+create table sdata (
+     id int primary key,student_name varchar(30),tamil int(5),english int(5),maths int(5),science int(5),social int(5),total int(5), location varchar(30), phone_no int(10)
+     );
+     
+alter table  sdata
+modify phone_no bigint ;
+     
+select*from sdata;
+
+insert into sdata  values(1,'naveen',58,67,80,94,39,400,"chennai",12345 ) ;
+insert into sdata  values(2,'kumar',70,29,35,58,97,356,"kerala",12456 ) ;
+insert into sdata  values(3,'sathish',50,71,19,34,59,326,"coimbatore",122134 ) ;
+insert into sdata  values(4,'santhosh',84,89,99,100,97,490,"chennai",126774 ) ;
+insert into sdata  values(5,'KARTHICK',89,79,50,90,50,400,"bangalore",126776 ) ;
+insert into sdata  values(6,'Ram',95,92,59,42,46,385,"trichy",126778 ) ;
+insert into sdata  values(7,'kavin',60,89,99,83,97,420,"chennai",126743) ;
+
+select * , sum( tamil + english + maths + science + social )  from ;  -- is not work 
+
+select *  from sdata 
+where student_name<>"naveen";  
+
+select * from sdata ;
+
+select student_name from sdata where tamil>35 and  english>35 and maths > 35 and science >35 and social >35 ;
+
+
+SELECT student_name,location  from sdata
+order by location  ;
+
+SELECT *  from sdata
+order by location  ;
+
+update sdata set phone_no=9786699395 where id=1   ;
+
+select student_name , location from sdata
+where tamil=100 or   english=100 or  maths = 100 or science=100 or social=100 ;
+
+alter table sdata
+add  college varchar(100);   
+
+alter table sdata
+drop college ;
+
+select student_name from sdata where tamil>75 or  english>75 or maths > 75 or science >75 or social >75  ;  -- who scored the the above 75 marks 
+select student_name from sdata where tamil<35 or  english<35 or maths < 35 or science <35 or social < 35 ; -- who got mark in below 35 marks 
+
+SELECT *  from sdata ;
+
+alter table sdata
+add column college1 varchar(100);
+
+alter table sdata
+drop column college1 ;
+
+update sdata set college="SRM" where id=1 or id=2;
+,
+alter table sdata drop column college ;
+
+
+SELECT*from emp
+order by ( CASE job_dec 
+WHEN 'ceo' THEN 1
+WHEN 'manager' THEN 2 
+WHEN 'admin' THEN 3
+ELSE 100 END 
+),ename , location;  
+
+
+create table  dataemp( id int primary key auto_increment , ename varchar(50) , role varchar(30) , salary bigint ) ;
+
+select * from dataemp ;
+
+insert into dataemp(ename,role,salary)  values( "naveen" , "python" , 100000 ) ;
+insert into dataemp(ename,role,salary)  values( "kavin" , "python" , 22000 ) ;
+insert into dataemp(ename,role,salary)  values( "kumar" , "python" , 400000 ) ;
+insert into dataemp(ename,role,salary)  values( "hari" , "python" , 670000 ) ;
+insert into dataemp(ename,role,salary)  values( "murugan" , "python" , 780000 ) ;
+insert into dataemp(ename,role,salary)  values( "srinivasan" , "python" , 500000 ) ;
+insert into dataemp(ename,role,salary)  values( "mari" , "java" , 670000 ) ;
+insert into dataemp(ename,role,salary)  values( "muru" , "java" , 780000 ) ;
+insert into dataemp(ename,role,salary)  values( "vasan" , "sql" , 500000 ) ;
+
+select role, sum(salary) , avg(salary) ,count(id) from dataemp
+group by role  having role ="python" or role= "sql" ;
+
+select role, sum(salary) , avg(salary) ,count(id) from dataemp
+group by role  having role in ("python" , "sql" );
+
+select role, sum(salary) , avg(salary) ,count(ename) from dataemp
+group by role  having role in ("python" , "sql" );
+     
+     
+     
+     

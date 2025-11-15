@@ -1,0 +1,1176 @@
+
+show databases ;
+create database uniq;
+
+use first2;
+
+
+select * from naveen ;
+create table stu(
+     id int primary key,
+     name varchar(30),
+     gpa decimal (5,2) 
+     );
+     
+     drop table stu;
+      
+insert into stu  values(1,'naveen',7.2);
+insert into stu  values(2,'aaaa',8.2);
+insert into stu  values(3,'bbbb',8.2),(4,'cccc',6.4);
+insert into stu  values(5,'DDDD',5.2);
+insert into stu  values(6,'snk',6.7);
+select * from stu;
+
+show tables;
+drop table student;
+desc stu;
+select * from stu;  
+show databases;     
+use first2;
+create database test;
+drop schema test;
+insert into stu values
+(17,"naveen",7.4),
+(11,"kumar",7.8),
+(10,"kavin",7.0);
+
+
+
+create table emp(
+emp_id int primary key,
+ename varchar(30),
+job_dec varchar(20),
+salary int );
+
+select * from emp; 
+
+describe emp ;
+
+
+insert into emp values(1,'ram','admin',10000);
+insert into emp values(2,'hari','admin',10000);
+insert into emp values(3,'srini','admin',10000);
+insert into emp values(4,'kumar','admin',20000);
+insert into emp values(5,'kavin','admin',10000);
+insert into emp values(6,'ra','admin',100000);
+insert into emp values(7,'kumar','admin',100000);
+insert into emp values(8,'raj','admin',200000);
+insert into emp values(9,'manikandan','ceo',200000);
+insert into emp values(10,'ramkumar','manager',200000);
+insert into emp values(11,'ragul','admin',200000);
+insert into emp values(12,'murali','admin',200000);
+insert into emp values(13,'ramkmar','manager',200000);
+insert into emp values(14,'raul','ceo',20000);
+insert into emp values(15,'agul','ceo',20000);
+
+select*from emp
+where ename="kavin";
+select*from emp
+where ename<>"kavin";
+
+select*from emp
+where salary>100000;
+
+select*from emp
+where salary<10000  and   job_dec='ceo';
+
+select*from emp
+where job_dec='ceo' or  job_dec='manager'; 
+
+select*from emp
+where job_dec in ('ceo','manager');
+
+select*from emp
+where job_dec NOT IN ('ceo','manager'); 
+
+select*from emp
+where salary BETWEEN 100000 AND 2000000 
+LIMIT 5;
+
+--  LIKE
+--  WILDCARDS %(ZERO OR MORE CHARACTERS)      _(ONE CHARACTER)
+
+select*from emp
+WHERE ename  LIKE 'r%' ;
+
+select*from emp
+WHERE ename  LIKE '%r' ;
+
+SELECT * FROM emp
+WHERE ename  LIKE 'A%A';
+
+
+SELECT*FROM emp
+WHERE ename  LIKE '%u%';
+
+SELECT*FROM emp
+WHERE ename  LIKE '___u%';
+
+SELECT*FROM emp
+WHERE ename  LIKE '___u\%'; 
+
+UPDATE emp
+SET job_dec="admin"
+Where job_dec="ceo";
+
+DELETE FROM emp
+WHERE emp_id=1;   -- this will be total rows
+
+
+UPDATE emp
+SET email=NULL
+Where emp_id=3;
+
+SELECT*FROM emp ;
+
+UPDATE emp
+SET ename="ram"
+Where ename="kavin";
+
+SELECT DISTINCT job_dec 
+FROM emp;
+
+SELECT DISTINCT ename 
+FROM emp;
+
+
+
+--- ORDER BY
+
+SELECT*from emp
+order by ename;  
+
+SELECT*from emp
+order by salary DESC;
+
+SELECT*from emp
+order by salary ASC;
+
+SELECT*from emp
+order by salary ,ename;
+
+SELECT*from emp
+where job_dec="admin"
+order by salary;
+
+DELETE FROM emp
+WHERE email ="new_email@exampl12233453111444444e.com";    --- this is delete data from  particular column  and particular  rows , you give the deleted value
+
+
+delete from emp 
+where  ename="ra";
+
+
+SELECT*from emp
+order by ( CASE job_dec 
+WHEN 'ceo' THEN 1
+WHEN 'manager' THEN 2 
+WHEN 'admin' THEN 3
+ELSE 100 END 
+),ename;
+
+    -- -function- perform a specific task
+SELECT COUNT(*) total from emp ;
+
+select count(*) from emp
+where job_dec="admin" ;
+
+select count(*) no_of_managers 
+from emp
+where job_dec="admin" ;
+
+
+select avg(salary)
+from emp
+where job_dec="admin" ;
+
+select sum(salary)
+from emp ;
+
+
+select sum(salary)
+from emp
+where job_dec="admin" ;
+
+
+select max(salary) 
+from emp  ;
+
+select min(salary) 
+from emp ;
+
+
+-- -STRING
+
+Select UCASE(ename)NAME_upper_case  ,salary   
+ from  emp ;                           -- - alias name  ;
+
+Select ename,CHAR_LENGTH(ename) char_count  
+from  emp ;                           
+
+
+Select ename, concat('RS.',salary)   
+from  emp ;
+
+
+Select ename, concat('RS.',FORMAT(salary,0) )   
+from  emp ;
+
+
+Select ename, LEFT(job_dec,3)  
+from  emp ;
+
+                                             ---- table ALter ----
+ALTER TABLE emp
+ADD pancard VARCHAR(100) ;
+
+ALTER TABLE emp
+ADD email VARCHAR(25) AFTER ename;
+
+ALTER TABLE emp
+ADD email VARCHAR(25) first ;
+
+
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+
+UPDATE emp
+SET email ='new_email@exampl12233453111444444e.com'
+WHERE emp_id = 3;
+
+
+alter table  emp
+modify email varchar(100)  ;
+select*from emp ;
+
+insert into emp(email) values("naveenkumarsjmail") ;
+-- -DATE---
+ALTER TABLE emp ADD COLUMN hire_date DATE ;
+
+select * From emp ;
+
+update emp 
+set hire_date="2024-08-23";
+
+
+update emp 
+set hire_date="2014-04-29"
+where job_dec="admin" ;
+
+
+select now();
+
+select date(now());
+
+select curdate();
+
+select date_format(curdate(),"%d/%m/%y") ;
+
+select date_format(curdate(),"%d/%m/%Y") AS DATE ;
+
+
+select dateDIFF(curdate(),"2024/02/03") AS days ;
+
+
+select date_add(curdate(),interval 1 day) as 'after one day snkk';
+
+
+select date_add(curdate(),interval 1 week) as 'after one week snkk';
+
+
+select date_add(curdate(),interval 1 month) as 'after one month snkk'  ;
+
+select date_add(curdate(),interval 1 year) as 'after one year snkk';  
+ 
+ --                       GROUP BY ----
+
+select job_dec, avg(salary)
+from emp
+group by job_dec;
+
+select job_dec,count(emp_id)
+from emp
+group by job_dec;
+
+
+select job_dec,count(emp_id)
+from emp
+group by job_dec 
+HAVING count(emp_id)>1
+order by job_dec; 
+
+
+select job_dec,count(emp_id)
+from emp
+where salary>50000 
+group by job_dec 
+HAVING count(emp_id)>1
+order by job_dec ;
+
+-- - CONSTRAINTS TOPIC 
+
+create table emp2( id int primary key , ename varchar(30) NOT null ,    -- you must enter the ename
+job_desc varchar(20)  default "unassigned" ,
+salary int , pan varchar(10) unique , check (salary>10000)  ) ;  
+
+
+select*from emp2 ;
+insert into emp2(id,ename,salary,pan) values(1,"naveen" ,2000000,"sdfrr44") ;
+insert into emp2(id,ename,salary,pan) values(3,"naveen" ,20000,"axf566") ;
+insert into emp2(id,ename,salary,pan) values(3,"naveen" ,20000,"axf566") ;
+
+
+drop table  emp2 ;
+alter table  emp
+modify ename varchar(30) not null ;
+
+alter table  emp
+modify ename varchar(30)  ;
+
+
+alter table emp 
+alter job_dec set default "unassigned" ;
+
+alter table employee 
+alter job_desc  drop default  ;
+
+
+alter table emp 
+add constraint check_salary check(salary>10000);
+
+alter table emp 
+drop  check  check_salary ;
+
+create table branch2(
+     branch_id int primary key auto_increment,
+     br_name varchar(30)not null ,
+     address varchar(200) ) ;
+     
+alter table  branch
+modify address varchar(30)  ;
+
+---- IF you do not give the any values its this auto incremenbt and Not null means you must give the value at this column  and auto incremebt  value you can  be set
+
+drop table  branch;
+create table emp1(
+emp_id int primary key auto_increment ,   
+ename varchar(30)not null,
+job_dec varchar(20),
+salary int ,
+branch_id int,
+constraint fr_branchid foreign key(branch_id) references branch2(branch_id) 
+on delete cascade ) ; -- cascade or on delete set null
+
+alter table emp1 
+drop foreign key fr_branchid ;
+
+
+
+-- INDEX 
+select*from emp1;
+show index from emp2;
+-- how to creat index
+
+create index name_index ON emp1(ename);
+
+show index from emp1;
+
+alter table emp1 
+drop index name_index;
+
+alter table emp1 
+add index (ename) ;
+
+alter table emp1   -- - not a drop 
+drop index ename;
+
+drop table emp1 ;
+
+insert into emp1 values(1,'ram','admin',10000,1);
+insert into emp1 values(2,'hari','admin',10000,3);
+insert into emp1 values(3,'srini','ceo',10000,3);
+insert into emp1 values(4,'kumar','admin',20000,2);
+insert into emp1 values(5,'kavin','manager',10000,2);
+insert into emp1 values(6,'ra','admin',100000,1);
+insert into emp1 values(7,'kumar','admin',100000,3);
+insert into emp1 values(8,'raj','admin',200000,2);
+insert into emp1 values(9,'kumar','admin',10000,null);
+insert into emp1 values(10,'rajesh','admin',20000,null);
+insert into emp1 values(11,'rajkumar','tl',200000,4);
+
+select*from emp1 ;
+
+insert into branch2  values(1,'namakkal',"chennai63221");
+insert into branch2  values(2,'mumbai',"namakkal32400");
+insert into branch2  values(3,'chennai',"chennai400");
+insert into branch2  values(4,'kerala',"kerala400");
+insert into branch2  values(5,'karur',"kala400");
+
+select * from branch2 ;
+
+delete from  branch2 where branch_id=2 ; 
+
+DROP TABLE BRANCH2 ;
+DROP TABLE EMP1;
+-- JOINS
+select * from emp1 ;
+
+select * from branch2 ;
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+inner join branch2   -- perfect match 
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+left join branch2
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select e.emp_id,e.ename,e.job_dec,b.br_name
+from emp1  as e
+right join branch2  as b
+on e.branch_id=b.branch_id
+order by e.emp_id ;
+
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1,branch2
+where emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+cross join branch2 ;
+
+-- br name emp count
+ select b.br_name, count(e.emp_id)  no_of_emp
+ from branch2 as b
+ join emp1 as e 
+ on b.branch_id =e.branch_id
+ group by e.branch_id ;
+
+
+create table u1(cl_id int primary key auto_increment , location varchar(100) not null ,
+addr varchar (200) );
+
+create table u2(cl_id int primary key auto_increment , location varchar(100) not null ,
+addr varchar (200) );
+
+select * from u1 ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("chennai" , "cchh44") ;
+
+insert into u2(location ,addr) values("salem" , "sa44") ;
+insert into u1(location ,addr) values("namakkal" , "nkl44") ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("kerala" , "cchh4667") ;
+
+
+select * from u1 ;
+select * from u2 ;
+
+
+select * from u1 
+union
+select * from u2 ;
+
+
+select * from u1 
+union all
+select * from u2 ;
+
+-- employee from chennai branch 
+select * from emp1 
+where branch_id=(select branch_id from branch2
+where br_name="chennai")  ;
+
+-- employee with min salary 
+
+select* from emp1
+where salary= (select min(salary) from emp1 );
+
+
+--- Exists used with subquery 
+--- branches containing atleast one admin
+
+select branch_id , br_name 
+from branch2 
+where exists (
+select * from emp1
+where job_dec="admin" and branch2.branch_id=emp1.branch_id);
+
+-- any
+-- branch info in which any employee gets more than 25 L
+
+SELECT* FROM branch2
+where branch_id= any(  select branch_id from emp1 
+where salary > 25000 );
+
+
+--- ALL 
+--- employee not working in chennai or namAKKAL
+
+select * from emp1
+where branch_id <>ALL( select branch_id from branch2
+where br_name in ("chennai" , "namakkal")) ;
+
+
+
+-- VIEW
+
+create or replace view emp_br 
+as
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+left join branch2
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select* from emp_br 
+where job_dec="manager"  ;   -- it comes branch name
+
+select* from emp1
+where job_dec="manager"  ;   --  it comes  branch id
+
+  
+drop view emp_br  ;    -- its delete view delete 
+
+
+-- completed 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+show databases ;
+create database uniq;
+
+use first2;
+
+
+select * from naveen ;
+create table stu(
+     id int primary key,
+     name varchar(30),
+     gpa decimal (5,2) 
+     );
+     
+     drop table stu;
+      
+insert into stu  values(1,'naveen',7.2);
+insert into stu  values(2,'aaaa',8.2);
+insert into stu  values(3,'bbbb',8.2),(4,'cccc',6.4);
+insert into stu  values(5,'DDDD',5.2);
+insert into stu  values(6,'snk',6.7);
+select * from stu;
+
+show tables;
+drop table student;
+desc stu;
+select * from stu;  
+show databases;     
+use first2;
+create database test;
+drop schema test;
+insert into stu values
+(17,"naveen",7.4),
+(11,"kumar",7.8),
+(10,"kavin",7.0);
+
+
+
+create table emp(
+emp_id int primary key,
+ename varchar(30),
+job_dec varchar(20),
+salary int );
+
+select * from emp; 
+
+describe emp ;
+
+
+insert into emp values(1,'ram','admin',10000);
+insert into emp values(2,'hari','admin',10000);
+insert into emp values(3,'srini','admin',10000);
+insert into emp values(4,'kumar','admin',20000);
+insert into emp values(5,'kavin','admin',10000);
+insert into emp values(6,'ra','admin',100000);
+insert into emp values(7,'kumar','admin',100000);
+insert into emp values(8,'raj','admin',200000);
+insert into emp values(9,'manikandan','ceo',200000);
+insert into emp values(10,'ramkumar','manager',200000);
+insert into emp values(11,'ragul','admin',200000);
+insert into emp values(12,'murali','admin',200000);
+insert into emp values(13,'ramkmar','manager',200000);
+insert into emp values(14,'raul','ceo',20000);
+insert into emp values(15,'agul','ceo',20000);
+
+select*from emp
+where ename="kavin";
+select*from emp
+where ename<>"kavin";
+
+select*from emp
+where salary>100000;
+
+select*from emp
+where salary<10000  and   job_dec='ceo';
+
+select*from emp
+where job_dec='ceo' or  job_dec='manager'; 
+
+select*from emp
+where job_dec in ('ceo','manager');
+
+select*from emp
+where job_dec NOT IN ('ceo','manager'); 
+
+select*from emp
+where salary BETWEEN 100000 AND 2000000 
+LIMIT 5;
+
+--  LIKE
+--  WILDCARDS %(ZERO OR MORE CHARACTERS)      _(ONE CHARACTER)
+
+select*from emp
+WHERE ename  LIKE 'r%' ;
+
+select*from emp
+WHERE ename  LIKE '%r' ;
+
+SELECT * FROM emp
+WHERE ename  LIKE 'A%A';
+
+
+SELECT*FROM emp
+WHERE ename  LIKE '%u%';
+
+SELECT*FROM emp
+WHERE ename  LIKE '___u%';
+
+SELECT*FROM emp
+WHERE ename  LIKE '___u\%'; 
+
+UPDATE emp
+SET job_dec="admin"
+Where job_dec="ceo";
+
+DELETE FROM emp
+WHERE emp_id=1;   -- this will be total rows
+
+
+UPDATE emp
+SET email=NULL
+Where emp_id=3;
+
+SELECT*FROM emp ;
+
+UPDATE emp
+SET ename="ram"
+Where ename="kavin";
+
+SELECT DISTINCT job_dec 
+FROM emp;
+
+SELECT DISTINCT ename 
+FROM emp;
+
+
+
+--- ORDER BY
+
+SELECT*from emp
+order by ename;  
+
+SELECT*from emp
+order by salary DESC;
+
+SELECT*from emp
+order by salary ASC;
+
+SELECT*from emp
+order by salary ,ename;
+
+SELECT*from emp
+where job_dec="admin"
+order by salary;
+
+DELETE FROM emp
+WHERE email ="new_email@exampl12233453111444444e.com";    --- this is delete data from  particular column  and particular  rows , you give the deleted value
+
+
+delete from emp 
+where  ename="ra";
+
+
+SELECT*from emp
+order by ( CASE job_dec 
+WHEN 'ceo' THEN 1
+WHEN 'manager' THEN 2 
+WHEN 'admin' THEN 3
+ELSE 100 END 
+),ename;
+
+    -- -function- perform a specific task
+SELECT COUNT(*) total from emp ;
+
+select count(*) from emp
+where job_dec="admin" ;
+
+select count(*) no_of_managers 
+from emp
+where job_dec="admin" ;
+
+
+select avg(salary)
+from emp
+where job_dec="admin" ;
+
+select sum(salary)
+from emp ;
+
+
+select sum(salary)
+from emp
+where job_dec="admin" ;
+
+
+select max(salary) 
+from emp  ;
+
+select min(salary) 
+from emp ;
+
+
+-- -STRING
+
+Select UCASE(ename)NAME_upper_case  ,salary   
+ from  emp ;                           -- - alias name  ;
+
+Select ename,CHAR_LENGTH(ename) char_count  
+from  emp ;                           
+
+
+Select ename, concat('RS.',salary)   
+from  emp ;
+
+
+Select ename, concat('RS.',FORMAT(salary,0) )   
+from  emp ;
+
+
+Select ename, LEFT(job_dec,3)  
+from  emp ;
+
+                                             ---- table ALter ----
+ALTER TABLE emp
+ADD pancard VARCHAR(100) ;
+
+ALTER TABLE emp
+ADD email VARCHAR(25) AFTER ename;
+
+ALTER TABLE emp
+ADD email VARCHAR(25) first ;
+
+
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+
+UPDATE emp
+SET email ='new_email@exampl12233453111444444e.com'
+WHERE emp_id = 3;
+
+
+alter table  emp
+modify email varchar(100)  ;
+select*from emp ;
+
+insert into emp(email) values("naveenkumarsjmail") ;
+-- -DATE---
+ALTER TABLE emp ADD COLUMN hire_date DATE ;
+
+select * From emp ;
+
+update emp 
+set hire_date="2024-08-23";
+
+
+update emp 
+set hire_date="2014-04-29"
+where job_dec="admin" ;
+
+
+select now();
+
+select date(now());
+
+select curdate();
+
+select date_format(curdate(),"%d/%m/%y") ;
+
+select date_format(curdate(),"%d/%m/%Y") AS DATE ;
+
+
+select dateDIFF(curdate(),"2024/02/03") AS days ;
+
+
+select date_add(curdate(),interval 1 day) as 'after one day snkk';
+
+
+select date_add(curdate(),interval 1 week) as 'after one week snkk';
+
+
+select date_add(curdate(),interval 1 month) as 'after one month snkk'  ;
+
+select date_add(curdate(),interval 1 year) as 'after one year snkk';  
+ 
+ --                       GROUP BY ----
+
+select job_dec, avg(salary)
+from emp
+group by job_dec;
+
+select job_dec,count(emp_id)
+from emp
+group by job_dec;
+
+
+select job_dec,count(emp_id)
+from emp
+group by job_dec 
+HAVING count(emp_id)>1
+order by job_dec; 
+
+
+select job_dec,count(emp_id)
+from emp
+where salary>50000 
+group by job_dec 
+HAVING count(emp_id)>1
+order by job_dec ;
+
+-- - CONSTRAINTS TOPIC 
+
+create table emp2( id int primary key , ename varchar(30) NOT null ,    -- you must enter the ename
+job_desc varchar(20)  default "unassigned" ,
+salary int , pan varchar(10) unique , check (salary>10000)  ) ;  
+
+
+select*from emp2 ;
+insert into emp2(id,ename,salary,pan) values(1,"naveen" ,2000000,"sdfrr44") ;
+insert into emp2(id,ename,salary,pan) values(3,"naveen" ,20000,"axf566") ;
+insert into emp2(id,ename,salary,pan) values(3,"naveen" ,20000,"axf566") ;
+
+
+drop table  emp2 ;
+alter table  emp
+modify ename varchar(30) not null ;
+
+alter table  emp
+modify ename varchar(30)  ;
+
+
+alter table emp 
+alter job_dec set default "unassigned" ;
+
+alter table employee 
+alter job_desc  drop default  ;
+
+
+alter table emp 
+add constraint check_salary check(salary>10000);
+
+alter table emp 
+drop  check  check_salary ;
+
+create table branch2(
+     branch_id int primary key auto_increment,
+     br_name varchar(30)not null ,
+     address varchar(200) ) ;
+     
+alter table  branch
+modify address varchar(30)  ;
+
+---- IF you do not give the any values its this auto incremenbt and Not null means you must give the value at this column  and auto incremebt  value you can  be set
+
+drop table  branch;
+create table emp1(
+emp_id int primary key auto_increment ,   
+ename varchar(30)not null,
+job_dec varchar(20),
+salary int ,
+branch_id int,
+constraint fr_branchid foreign key(branch_id) references branch2(branch_id) 
+on delete cascade ) ; -- cascade or on delete set null
+
+alter table emp1 
+drop foreign key fr_branchid ;
+
+
+
+-- INDEX 
+select*from emp1;
+show index from emp2;
+-- how to creat index
+
+create index name_index ON emp1(ename);
+
+show index from emp1;
+
+alter table emp1 
+drop index name_index;
+
+alter table emp1 
+add index (ename) ;
+
+alter table emp1   -- - not a drop 
+drop index ename;
+
+drop table emp1 ;
+
+insert into emp1 values(1,'ram','admin',10000,1);
+insert into emp1 values(2,'hari','admin',10000,3);
+insert into emp1 values(3,'srini','ceo',10000,3);
+insert into emp1 values(4,'kumar','admin',20000,2);
+insert into emp1 values(5,'kavin','manager',10000,2);
+insert into emp1 values(6,'ra','admin',100000,1);
+insert into emp1 values(7,'kumar','admin',100000,3);
+insert into emp1 values(8,'raj','admin',200000,2);
+insert into emp1 values(9,'kumar','admin',10000,null);
+insert into emp1 values(10,'rajesh','admin',20000,null);
+insert into emp1 values(11,'rajkumar','tl',200000,4);
+
+select*from emp1 ;
+
+insert into branch2  values(1,'namakkal',"chennai63221");
+insert into branch2  values(2,'mumbai',"namakkal32400");
+insert into branch2  values(3,'chennai',"chennai400");
+insert into branch2  values(4,'kerala',"kerala400");
+insert into branch2  values(5,'karur',"kala400");
+
+select * from branch2 ;
+
+delete from  branch2 where branch_id=2 ; 
+
+DROP TABLE BRANCH2 ;
+DROP TABLE EMP1;
+-- JOINS
+select * from emp1 ;
+
+select * from branch2 ;
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+inner join branch2   -- perfect match 
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+left join branch2
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select e.emp_id,e.ename,e.job_dec,b.br_name
+from emp1  as e
+right join branch2  as b
+on e.branch_id=b.branch_id
+order by e.emp_id ;
+
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1,branch2
+where emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+cross join branch2 ;
+
+-- br name emp count
+ select b.br_name, count(e.emp_id)  no_of_emp
+ from branch2 as b
+ join emp1 as e 
+ on b.branch_id =e.branch_id
+ group by e.branch_id ;
+
+
+create table u1(cl_id int primary key auto_increment , location varchar(100) not null ,
+addr varchar (200) );
+
+create table u2(cl_id int primary key auto_increment , location varchar(100) not null ,
+addr varchar (200) );
+
+select * from u1 ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("chennai" , "cchh44") ;
+
+insert into u2(location ,addr) values("salem" , "sa44") ;
+insert into u1(location ,addr) values("namakkal" , "nkl44") ;
+insert into u1(location ,addr) values("chennai" , "cchh44") ;
+insert into u2(location ,addr) values("kerala" , "cchh4667") ;
+
+
+select * from u1 ;
+select * from u2 ;
+
+
+select * from u1 
+union
+select * from u2 ;
+
+
+select * from u1 
+union all
+select * from u2 ;
+
+-- employee from chennai branch 
+select * from emp1 
+where branch_id=(select branch_id from branch2
+where br_name="chennai")  ;
+
+-- employee with min salary 
+
+select* from emp1
+where salary= (select min(salary) from emp1 );
+
+
+--- Exists used with subquery 
+--- branches containing atleast one admin
+
+select branch_id , br_name 
+from branch2 
+where exists (
+select * from emp1
+where job_dec="admin" and branch2.branch_id=emp1.branch_id);
+
+-- any
+-- branch info in which any employee gets more than 25 L
+
+SELECT* FROM branch2
+where branch_id= any(  select branch_id from emp1 
+where salary > 25000 );
+
+
+--- ALL 
+--- employee not working in chennai or namAKKAL
+
+select * from emp1
+where branch_id <>ALL( select branch_id from branch2
+where br_name in ("chennai" , "namakkal")) ;
+
+
+
+-- VIEW
+
+create or replace view emp_br 
+as
+select emp1.emp_id,emp1.ename,emp1.job_dec,branch2.br_name
+from emp1
+left join branch2
+on emp1.branch_id=branch2.branch_id
+order by emp1.emp_id ;
+
+select* from emp_br 
+where job_dec="manager"  ;   -- it comes branch name
+
+select* from emp1
+where job_dec="manager"  ;   --  it comes  branch id
+
+  
+drop view emp_br  ;    -- its delete view delete 
+
+
+-- completed 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+      
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+      
+
+
+
+
+
+

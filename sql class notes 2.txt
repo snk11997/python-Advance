@@ -1,0 +1,140 @@
+create table santhosh(id int primary key auto_increment,name varchar(50),location varchar(50),salary int);
+insert into santhosh(name,location,salary) values("arun","chennai",10000),
+("kumar","coimbatore",28000),("ram","chennai",15000),
+("siva","madurai",9000);
+insert into santhosh values(6,"rajan","chennai",50000);
+select * from santhosh where location="chennai";
+drop table santhosh;
+-- order by statement
+
+select * from santhosh where location="chennai" order by salary;
+select * from santhosh order by salary desc;
+
+-- limit & offset statement 
+
+select * from santhosh order by salary limit 2;
+select * from santhosh order by salary limit 5; 
+
+
+select * from santhosh order by salary limit 2 offset 1;
+select * from santhosh order by salary limit 2 offset 2;
+select * from santhosh order by salary limit 1 offset 2;
+select * from santhosh order by salary limit 100 offset 1;
+[11:13 am, 15/4/2024] Ventatesh Python: Table:
+id   regno  name   location  total
+
+
+1.Display student details in high to low based on total.
+2.Display student name location who are in chennai.
+3.Display student name and total who got 3rd highest mark.
+4.Display student regno and name who got 3rd lowest mark.
+5.Display student regno and name who got 3rd lowest mark in coimbatore and chennai.
+6.Add a phoneno column.
+7.Insert same phone number for all rows in one query.
+8.update student name to "senthil" who have id =1.
+
+
+-- Constraints
+/*
+1. not null - must insert data
+2.unique - Column data shoult be unique values
+3.primary - combination of not null & unique
+4.default - assign value default
+5.foreign key - used in joins topic
+6.check - insert value when condition satisfied
+*/
+ 
+ -- not null (Duplicate allowed)
+create table arun(id int not null,name varchar(50));
+insert into arun values(1,"kumar");
+insert into arun(id) values(1);
+select * from arun;
+insert into arun(name) values("senthil"); 
+drop table arun;
+
+-- unique (Null value allowed)
+create table arun(id int unique,name varchar(50));
+insert into arun values(1,"kumar");
+insert into arun(id) values(1);
+select * from arun;
+insert into arun(name) values("senthil"); 
+drop table arun;
+
+-- primary key
+create table arun(id int primary key,name varchar(50));
+insert into arun values(1,"kumar");
+insert into arun(id) values(1);
+select * from arun;
+insert into arun(name) values("senthil"); 
+drop table arun;
+
+-- default 
+create table arun(id int ,name varchar(50) default "uniq");
+insert into arun values(1,"kumar");
+insert into arun(id) values(1);
+select * from arun;
+insert into arun(name) values("senthil"); 
+drop table arun;
+
+-- check 
+create table arun(id int check (id>10),name varchar(50));
+insert into arun values(1,"kumar");
+insert into arun(id) values(1);
+select * from arun;
+insert into arun(name) values("senthil"); 
+drop table arun;
+
+-- foreign 
+ -- Used to join 2 or more tables
+ 
+-- joins
+   /*
+   1.inner join
+   2.left join
+   3.right join
+   4.full join
+   5.cross join
+   */
+   
+   -- Syntax
+-- select table1column name,.. from table1name inner join table2name on table1.commoncolumnname =table2.commoncolumnname
+   select * from office;
+   select * from staff;
+   -- inner join
+   create table office (empid int,empname varchar(50),empsalary int);
+   insert into office values(101,"arun",10000),(102,"kumar",20000),
+   (103,"santhosh",15000);
+   
+   create table staff(empid int,empaddress varchar(50),emplocation varchar(50));
+   insert into staff values(102,"chennai","arumbakkam"),
+   (105,"chennai","kodambakkam"),(107,"coimbatore","Tnagar");
+   
+   -- inner join [common rows will return] 
+   select empname,empsalary,empaddress,emplocation from office inner join staff on office.empid=staff.empid;
+   
+   -- left join [left table will return completely along with common row in right table
+   select * from office left join staff on office.empid=staff.empid;
+   
+   -- right join [right table will return completely along with common row in left table
+   select * from office right join staff on office.empid=staff.empid;
+   
+   -- full join [show all row from 2 table] 
+    select * from office full join staff;
+  
+   -- crossjoin[one to many row comparison]
+   select * from office cross join staff;
+   select empname,empsalary,empaddress,emplocation from office cross join staff on office.empid=staff.empid ;
+   
+   
+   -- stored procedure [like function in python]
+   DELIMITER //
+
+CREATE PROCEDURE fun()
+BEGIN
+    SELECT * FROM office;
+END //
+
+DELIMITER ;
+call fun();
+
+drop procedure fun;
